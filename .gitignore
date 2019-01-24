@@ -1,0 +1,11 @@
+lib/*
+backup/*
+*.so
+*.dll
+*.exe
+*.bin
+*.tgz
+*.tar.gz
+*.zip
+*.pdf
+linux-panel
