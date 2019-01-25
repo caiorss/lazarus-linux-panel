@@ -6,13 +6,14 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, uPSComponent, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, process, unix, LCLIntf, ValEdit, ExtCtrls;
+  StdCtrls, process, unix, LCLIntf, ValEdit, ExtCtrls, ActnList;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
+    ButtonSwapCtrlCapslock: TButton;
     buttonQuit: TButton;
     buttonLaunch: TButton;
     buttonInvertColors: TButton;
@@ -23,6 +24,7 @@ type
     procedure buttonInvertColorsClick(Sender: TObject);
     procedure buttonLaunchClick(Sender: TObject);
     procedure buttonQuitClick(Sender: TObject);
+    procedure ButtonSwapCtrlCapslockClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure TrayIcon1Click(Sender: TObject);
@@ -43,6 +45,7 @@ implementation
 
 //=========== Functions =======================//
 
+// Requires: use process, unix;
 function LaunchApplication(commandLine: String): Integer;
 var
    Proc : TProcess;
@@ -75,21 +78,14 @@ end;
 //============= Controls Handles =================//
 
 procedure TForm1.buttonInvertColorsClick(Sender: TObject);
-var
-  // Requires: use process, unix;
-  Proc : TProcess;
 begin
-  Proc := TProcess.Create(nil);
-  Proc.CommandLine := 'xcalib -i -a';
-  Proc.Execute
+  // Note: Requires the application xcalib installed
+  LaunchApplication('xcalib -i -a');
 end;
 
 procedure TForm1.buttonLaunchClick(Sender: TObject);
 begin
   LaunchApplication(ComboBox1.Text);
-//  Proc := TProcess.Create(nil);
-//  Proc.CommandLine := ComboBox1.Text;
-//  Proc.Execute
 end;
 
 // Exit Application
@@ -97,6 +93,11 @@ procedure TForm1.buttonQuitClick(Sender: TObject);
 begin
    // Exit application
    Application.Terminate;
+end;
+
+procedure TForm1.ButtonSwapCtrlCapslockClick(Sender: TObject);
+begin
+   LaunchApplication('setxkbmap -option "ctrl:swapcaps');
 end;
 
 
