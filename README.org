@@ -1,0 +1,29 @@
+#+TITLE: Linux Panel 
+#+AUTHOR: Caio Rodrigues 
+
+* Linux Panel - Lazarus IDE Example 
+** Overview  
+
+This is a small graphical user interface panel with TrayICon built
+with Lazarues IDE for controlling a Linux desktop. It provides a form
+for launching applications and buttons for inverting monitors colors;
+swapping ctrl and capslocks; and setting the keyboard.
+
+This small application is useful as proof-of-concept and shows how to
+wrap C-library with Free-Pascal.
+
+#+CAPTION: Application screenshot 
+[[file:images/screenshot.png][file:images/screenshot.png]]
+
+Buttons: 
+
+ + Button invert color - inverts monitor color - needs the application
+   _xcalib_ installed.
+ + Button swap ctrl and capslock - needs *setxkbmap* application.
+
+** Building 
+
+To build the Application, it is necessary the Lazarus IDE. The app
+when compiled is statically linked with all dependencies which makes
+the deployment easier. 
+
