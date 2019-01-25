@@ -9,3 +9,5 @@ backup/*
 *.zip
 *.pdf
 linux-panel
+linux_panel
+*.tmp
