@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 2470
+  Left = 2340
   Height = 363
-  Top = 269
+  Top = 335
   Width = 549
   ActiveControl = buttonLaunch
   Caption = 'Linux Control Panel'
@@ -39,8 +39,10 @@ object Form1: TForm1
     Height = 27
     Top = 24
     Width = 179
+    HelpType = htKeyword
+    AutoComplete = True
+    AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
     ItemHeight = 0
-    ItemIndex = 3
     Items.Strings = (
       'emacs'
       'geany'
@@ -48,6 +50,12 @@ object Form1: TForm1
       'xterm'
       'terminator'
       'terminology'
+      'firefox'
+      'chromium-browser'
+      '/home/archbox/opt/vivaldi/opt/vivaldi/vivaldi'
+      'virtualbox'
+      'baobab'
+      'startlazarus'
     )
     TabOrder = 2
     Text = 'xterm'
