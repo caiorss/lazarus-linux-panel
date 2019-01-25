@@ -6,13 +6,14 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, uPSComponent, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, process, unix, LCLIntf, ValEdit, ExtCtrls, ActnList;
+  StdCtrls, process, unix, LCLIntf, ValEdit, ExtCtrls, ActnList, Buttons;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
+    ButtonSetKeyboard: TBitBtn;
     ButtonSwapCtrlCapslock: TButton;
     buttonQuit: TButton;
     buttonLaunch: TButton;
@@ -20,6 +21,7 @@ type
     buttonAbout: TButton;
     ComboBox1: TComboBox;
     TrayIcon1: TTrayIcon;
+    procedure ButtonSetKeyboardClick(Sender: TObject);
     procedure buttonAboutClick(Sender: TObject);
     procedure buttonInvertColorsClick(Sender: TObject);
     procedure buttonLaunchClick(Sender: TObject);
@@ -105,6 +107,11 @@ procedure TForm1.buttonAboutClick(Sender: TObject);
 begin
    // Requires: uses LCLIntf;
    OpenUrl('https://reddit.com/r/cpp');
+end;
+
+procedure TForm1.ButtonSetKeyboardClick(Sender: TObject);
+begin
+   LaunchApplication('setxkbmap -model abnt2 -layout br -variant abnt2')
 end;
 
 
