@@ -146,11 +146,11 @@ begin
    LaunchApplication('setxkbmap -option "ctrl:swapcaps');
 end;
 
-
+// Open project's github repository in WebBrowser
 procedure TForm1.buttonAboutClick(Sender: TObject);
 begin
    // Requires: uses LCLIntf;
-   OpenUrl('https://reddit.com/r/cpp');
+   OpenUrl('https://github.com/caiorss/lazarus-linux-panel');
 end;
 
 procedure TForm1.ButtonSetKeyboardClick(Sender: TObject);
