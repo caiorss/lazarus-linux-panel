@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, uPSComponent, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, process, unix, LCLIntf, ValEdit, ExtCtrls, ActnList, Buttons;
+  StdCtrls, process, unix, LCLIntf, ValEdit, ExtCtrls, ActnList, Buttons,
+  Ctypes;
 
 type
 
@@ -20,6 +21,7 @@ type
     buttonInvertColors: TButton;
     buttonAbout: TButton;
     ComboBox1: TComboBox;
+    Memo1: TMemo;
     TrayIcon1: TTrayIcon;
     procedure ButtonSetKeyboardClick(Sender: TObject);
     procedure buttonAboutClick(Sender: TObject);
@@ -70,25 +72,43 @@ end;
 
 //=========== Functions =======================//
 
-// Requires: use process, unix;
+// Launch a subprocess
 function LaunchApplication(commandLine: String): Integer;
 var
    Proc : TProcess;
+   PP   : PPChar;
+   pid  : Integer;
 begin
-  // Requires: use process, unix;   
+   pid := fork();
+   if(pid = 0) then
+   begin
+      setsid();
+      umask(0);
+      //--- Executed in Forked Process (Child process)
+      GetMem (PP,1*SizeOf(Pchar));
+      PP[0] := nil;
+      // PP[0] := '/etc/fstab';
+      //PP[1] := nil;
+      Result := execvp(commandLine, PP);
+   end
+
+  {
    Proc := TProcess.Create(nil);
    Proc.CommandLine := commandLine;
    Proc.Execute;
    Result := 0;  // Dummy return value
+  }
 end;
 
 
 //=========== Form Handles ===================//
 
+// Code executed during application initialization
 procedure TForm1.FormCreate(Sender: TObject);
 begin
    TrayIcon1.Visible := True;
    TrayIcon1.Hint    := 'Hide';
+   Memo1.Text := CurrentDirectory();
 end;
 
 
