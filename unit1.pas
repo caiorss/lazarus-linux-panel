@@ -73,9 +73,8 @@ end;
 //=========== Functions =======================//
 
 // Launch a subprocess
-function LaunchApplication(commandLine: String): Integer;
+function LaunchAppFork(commandLine: String): Integer;
 var
-   Proc : TProcess;
    PP   : PPChar;
    pid  : Integer;
 begin
@@ -91,15 +90,17 @@ begin
       //PP[1] := nil;
       Result := execvp(commandLine, PP);
    end
-
-  {
-   Proc := TProcess.Create(nil);
-   Proc.CommandLine := commandLine;
-   Proc.Execute;
-   Result := 0;  // Dummy return value
-  }
 end;
 
+function LaunchApplication(commandLine: String): Integer;
+var
+   Proc: TProcess;
+begin
+ Proc := TProcess.Create(nil);
+ Proc.CommandLine := commandLine;
+ Proc.Execute;
+ Result := 0;  // Dummy return value
+end;
 
 //=========== Form Handles ===================//
 
@@ -130,7 +131,7 @@ end;
 
 procedure TForm1.buttonLaunchClick(Sender: TObject);
 begin
-  LaunchApplication(ComboBox1.Text);
+  LaunchAppFork(ComboBox1.Text);
 end;
 
 // Exit Application
