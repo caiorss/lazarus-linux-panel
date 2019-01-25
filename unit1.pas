@@ -45,6 +45,29 @@ implementation
 
 { TForm1 }
 
+// C-Function:  char* getcwd(char *buf, size_t size);
+// Requires: Uses Ctypes
+function getcwd(buf: CTypes.pcchar; size: CTypes.csize_t): CTypes.pcchar; cdecl; external;
+
+// C-Function:   pid_t fork(void);
+// Fork system-call (Fork current process)
+function fork(): CTypes.cint32 ; cdecl; external;
+
+// C-function: pid_t setsid(void);
+function setsid(): CTypes.cuint32; cdecl; external;
+
+// mode_t umask(mode_t mask);
+function umask(mask: CTypes.cuint32): CTypes.cuint32; cdecl; external;
+
+// C-Function: int execvp(const char *file, char *const argv[]);
+// function execvp(prog: CTypes.pcchar; args: array of CTypes.pcchar): CTypes.cuint32 ; cdecl; external;
+function execvp(prog: AnsiString; args: ppchar): CTypes.cuint32 ; cdecl; external;
+
+function CurrentDirectory(): string;
+begin
+  Result := SysUtils.StrPas(PAnsiChar(getcwd(nil, 0)))
+end;
+
 //=========== Functions =======================//
 
 // Requires: use process, unix;
