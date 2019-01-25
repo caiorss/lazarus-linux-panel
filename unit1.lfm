@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 2494
+  Left = 2470
   Height = 363
-  Top = 261
+  Top = 269
   Width = 549
   ActiveControl = buttonLaunch
   Caption = 'Linux Control Panel'
@@ -108,6 +108,16 @@ object Form1: TForm1
       'Memo1'
     )
     TabOrder = 7
+  end
+  object ButtonLaunchTerminal: TButton
+    Left = 343
+    Height = 25
+    Hint = 'Launch terminal emulator'
+    Top = 157
+    Width = 161
+    Caption = 'Terrminal'
+    OnClick = ButtonLaunchTerminalClick
+    TabOrder = 8
   end
   object TrayIcon1: TTrayIcon
     Icon.Data = {

@@ -14,6 +14,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ButtonLaunchTerminal: TButton;
     ButtonSetKeyboard: TBitBtn;
     ButtonSwapCtrlCapslock: TButton;
     buttonQuit: TButton;
@@ -23,6 +24,7 @@ type
     ComboBox1: TComboBox;
     Memo1: TMemo;
     TrayIcon1: TTrayIcon;
+    procedure ButtonLaunchTerminalClick(Sender: TObject);
     procedure ButtonSetKeyboardClick(Sender: TObject);
     procedure buttonAboutClick(Sender: TObject);
     procedure buttonInvertColorsClick(Sender: TObject);
@@ -156,6 +158,11 @@ end;
 procedure TForm1.ButtonSetKeyboardClick(Sender: TObject);
 begin
    LaunchApplication('setxkbmap -model abnt2 -layout br -variant abnt2')
+end;
+
+procedure TForm1.ButtonLaunchTerminalClick(Sender: TObject);
+begin
+   LaunchAppFork('terminator');
 end;
 
 
