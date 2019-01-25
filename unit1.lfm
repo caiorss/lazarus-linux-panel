@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 2340
+  Left = 2617
   Height = 363
-  Top = 335
+  Top = 596
   Width = 549
   ActiveControl = buttonLaunch
   Caption = 'Linux Control Panel'
