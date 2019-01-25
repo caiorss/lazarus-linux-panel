@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 2060
+  Left = 2085
   Height = 363
-  Top = 326
+  Top = 484
   Width = 549
   Caption = 'Linux Control Panel'
   ClientHeight = 363
